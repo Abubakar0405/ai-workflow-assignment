@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Classroom Task: Workflow Design & AI Integration</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">⚡ SmartFlow AI</div>
+    <nav>
+      <button class="nav-btn active" onclick="switchTab('report')">Case Report</button>
+      <button class="nav-btn" onclick="switchTab('simulator')">Live Simulation</button>
+      <button class="nav-btn" onclick="switchTab('calculator')">ROI Calculator</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    
+    <!-- TAB 1: ACADEMIC CASE REPORT -->
+    <section id="tab-report" class="tab-content active">
+      <div class="hero">
+        <span class="badge">Classroom Task Submission</span>
+        <h1>Workflow Design & AI Integration</h1>
+        <p class="subtitle">Streamlining Student Admissions via Multimodal OCR & Automated Decision Triage</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <h3>1. Case Study & As-Is Bottleneck</h3>
+          <p><strong>Process:</strong> University Student Admissions & Transcript Verification.</p>
+          <p><strong>Problem:</strong> Admissions officers manually review uploaded transcripts line-by-line, spending <strong>12–15 minutes per file</strong>. During peak admissions season, this creates a 3-week waiting backlog and human data-entry errors.</p>
+        </div>
+
+        <div class="card">
+          <h3>2. The To-Be AI Workflow</h3>
+          <ol class="workflow-steps">
+            <li><strong>Submission:</strong> Student uploads transcript PDF/Image.</li>
+            <li><strong>AI Extraction:</strong> Multimodal Vision LLM / OCR reads grades and course titles in under 10 seconds.</li>
+            <li><strong>Rule Engine:</strong> Calculates GPA, verifies prerequisite courses (Math, Physics, English).</li>
+            <li><strong>Dual Triage:</strong> High confidence (&ge;90%) auto-approves. Low confidence (<90%) routes to staff.</li>
+            <li><strong>Offer Dispatch:</strong> Instant conditional acceptance email sent.</li>
+          </ol>
+        </div>
+
+        <div class="card">
+          <h3>3. Suggested AI Improvements</h3>
+          <ul>
+            <li><strong>24/7 RAG Support Bot:</strong> Resolves 65% of applicant inquiries about eligibility and deadlines instantly.</li>
+            <li><strong>Predictive Yield Model:</strong> Machine learning forecasts admitted student enrollments to optimize class sizes.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: INTERACTIVE AI SIMULATOR -->
+    <section id="tab-simulator" class="tab-content">
+      <div class="section-header">
+        <h2>Admissions AI Pipeline Simulator</h2>
+        <p>Select a sample student application to simulate the automated OCR ingestion and decision triage.</p>
+      </div>
+
+      <div class="sim-grid">
+        <div class="card">
+          <h3>Select Sample Applicant</h3>
+          <div class="sample-buttons">
+            <button class="sample-btn" onclick="loadSample('sarah')">Sample 1: Sarah Chen (High Merit)</button>
+            <button class="sample-btn" onclick="loadSample('tariq')">Sample 2: Tariq Khan (Borderline GPA)</button>
+            <button class="sample-btn" onclick="loadSample('elena')">Sample 3: Elena Rostova (Blurred Scan)</button>
+          </div>
+
+          <div class="file-preview-box" id="filePreview">
+            <p class="placeholder-text">Click a sample above to load an academic transcript</p>
+          </div>
+
+          <button id="runBtn" class="primary-btn" onclick="runAiPipeline()" disabled>Run AI Pipeline</button>
+        </div>
+
+        <div class="card">
+          <h3>Real-Time Extraction & Output</h3>
+          <div id="aiConsole" class="console-box">
+            <div class="console-line text-muted">> System ready. Select an applicant file to begin.</div>
+          </div>
+          <div id="decisionCard" class="decision-box hidden"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: ROI CALCULATOR -->
+    <section id="tab-calculator" class="tab-content">
+      <div class="section-header">
+        <h2>Operational Impact & ROI Estimator</h2>
+        <p>Calculate the manual hours and administrative costs eliminated by integrating AI automation.</p>
+      </div>
+
+      <div class="calc-grid">
+        <div class="card">
+          <h3>Input Parameters</h3>
+          <div class="form-group">
+            <label>Annual Applications Volume: <span id="volVal" class="bold">10,000</span></label>
+            <input type="range" id="volInput" min="1000" max="50000" step="1000" value="10000" oninput="updateROI()">
+          </div>
+
+          <div class="form-group">
+            <label>Admissions Officer Hourly Wage ($): <span id="wageVal" class="bold">$25</span></label>
+            <input type="range" id="wageInput" min="15" max="60" step="1" value="25" oninput="updateROI()">
+          </div>
+
+          <div class="form-group">
+            <label>Manual Review Time per File: <strong>14 minutes</strong></label>
+            <label>AI Automated Review Time per File: <strong>0.5 minutes</strong></label>
+          </div>
+        </div>
+
+        <div class="card stats-card">
+          <h3>Projected Annual Savings</h3>
+          <div class="stat-item">
+            <span class="stat-number" id="hoursSaved">2,250</span>
+            <span class="stat-label">Staff Hours Saved / Year</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number highlight" id="dollarsSaved">$56,250</span>
+            <span class="stat-label">Administrative Cost Saved / Year</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="speedup">96.4%</span>
+            <span class="stat-label">Reduction in Processing Time</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
